@@ -1,3 +1,4 @@
+const pkg = require('../../../package.json')
 const {Command, flags} = require('@oclif/command')
 const qs = require('querystring')
 const axios = require('axios')
@@ -28,7 +29,10 @@ class GetMember extends Command {
     axios({
       method: 'GET',
       url,
-      headers: {Authorization: `Bearer ${ORBIT_API_KEY}`},
+      headers: {
+        Authorization: `Bearer ${ORBIT_API_KEY}`,
+        'User-Agent': `orbit-cli/${pkg.version}`,
+      },
     }).then(async resp => {
       const notes = await getNotesByMember({ORBIT_API_KEY, ORBIT_WORKSPACE_ID, API_BASE_URL}, resp.data.data.id)
       if (flags.open) {

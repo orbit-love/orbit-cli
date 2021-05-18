@@ -1,7 +1,7 @@
 {
   "name": "@orbit-love/cli",
   "description": "A Command Line Interface for Orbit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Kevin Lewis",
   "bin": {
     "orbit": "./bin/run"
@@ -52,10 +52,6 @@
   },
   "repository": "orbit-love/cli",
   "scripts": {
-    "postpack": "rm -f oclif.manifest.json",
-    "posttest": "eslint .",
-    "prepack": "oclif-dev manifest && oclif-dev readme",
-    "test": "nyc mocha --forbid-only \"test/**/*.test.js\"",
-    "version": "oclif-dev readme && git add README.md"
+    "test": "nyc mocha --forbid-only \"test/**/*.test.js\""
   }
 }

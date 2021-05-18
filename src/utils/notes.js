@@ -1,3 +1,4 @@
+const pkg = require('../../package.json')
 const boxen = require('boxen')
 const axios = require('axios')
 const moment = require('moment')
@@ -7,7 +8,10 @@ const getNotesByMember = (opts, memberId) => {
     axios({
       method: 'GET',
       url: `${opts.API_BASE_URL}/${opts.ORBIT_WORKSPACE_ID}/members/${memberId}/notes`,
-      headers: {Authorization: `Bearer ${opts.ORBIT_API_KEY}`},
+      headers: {
+        Authorization: `Bearer ${opts.ORBIT_API_KEY}`,
+        'User-Agent': `orbit-cli/${pkg.version}`,
+      },
     }).then(resp => {
       resolve(resp.data.data)
     }).catch(error => {
