@@ -1,0 +1,66 @@
+{
+  "name": "@orbit-love/cli",
+  "description": "A Command Line Interface for Orbit",
+  "version": "0.1.0",
+  "author": "Kevin Lewis",
+  "bin": {
+    "orbit": "./bin/run"
+  },
+  "bugs": "https://github.com/phazonoverload/cli/issues",
+  "dependencies": {
+    "@oclif/command": "^1.8.0",
+    "@oclif/config": "^1.17.0",
+    "@oclif/plugin-help": "^3.2.2",
+    "axios": "^0.21.1",
+    "boxen": "^5.0.1",
+    "chalk": "^4.1.1",
+    "cli-ux": "^5.5.1",
+    "moment": "^2.29.1",
+    "querystring": "^0.2.1"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1.26.0",
+    "@oclif/test": "^1.2.8",
+    "chai": "^4.3.4",
+    "eslint": "^5.16.0",
+    "eslint-config-oclif": "^3.1.0",
+    "globby": "^10.0.2",
+    "mocha": "^5.2.0",
+    "nyc": "^14.1.1"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json",
+    "/src"
+  ],
+  "homepage": "https://github.com/orbit-love/cli",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "MIT",
+  "main": "src/index.js",
+  "oclif": {
+    "commands": "./src/commands",
+    "bin": "npx @orbit-love/cli",
+    "topics": {
+      "members": {
+        "description": "Get and create members"
+      }
+    },
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "repository": "orbit-love/cli",
+  "scripts": {
+    "postpack": "rm -f oclif.manifest.json",
+    "posttest": "eslint .",
+    "prepack": "oclif-dev manifest && oclif-dev readme",
+    "test": "nyc mocha --forbid-only \"test/**/*.test.js\"",
+    "version": "oclif-dev readme && git add README.md"
+  }
+}
