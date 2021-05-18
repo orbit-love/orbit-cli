@@ -1,68 +1,63 @@
 @orbit-love/cli
 ===============
 
-Desc
+[![npm version](https://badge.fury.io/js/%40orbit-love%2Fcli.svg)](https://badge.fury.io/js/%40orbit-love%2Fcli)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](.github/CODE_OF_CONDUCT.md)
 
-[![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/@orbit-love/cli.svg)](https://npmjs.org/package/@orbit-love/cli)
-[![Downloads/week](https://img.shields.io/npm/dw/@orbit-love/cli.svg)](https://npmjs.org/package/@orbit-love/cli)
-[![License](https://img.shields.io/npm/l/@orbit-love/cli.svg)](https://github.com/phazonoverload/cli/blob/master/package.json)
+⚠️ An exceptionally **work-in-progress** command-line interface for interacting with your Orbit workspace. Active development on this particular project is slow as we are building features as we discover the need. Please don't use for anything serious. ⚠️
 
-<!-- toc -->
-* [Usage](#usage)
-* [Commands](#commands)
-<!-- tocstop -->
-# Usage
-<!-- usage -->
+We welcome contributions! There's lots to do! Check out the [Contributing Guidelines](.github/CONTRIBUTING.md) for more information.
+
 ```sh-session
-$ npm install -g @orbit-love/cli
-$ cli COMMAND
-running command...
-$ cli (-v|--version|version)
-@orbit-love/cli/0.1.0 darwin-x64 node-v15.6.0
-$ cli --help [COMMAND]
-USAGE
-  $ cli COMMAND
-...
+$ npx @orbit-love/cli COMMAND ARGUMENTS FLAGS
 ```
-<!-- usagestop -->
-# Commands
-<!-- commands -->
-* [`cli hello`](#cli-hello)
-* [`cli help [COMMAND]`](#cli-help-command)
 
-## `cli hello`
+## setup
 
-Describe the command here
+### `setup`
+
+Saves your Orbit Workspace ID and Orbit API Key. You must run this before other commands.
+
+## members
+
+### `members:get OR members:find`
+
+Shows information from a single member in your workspace. Can also display activities and notes with flags.
 
 ```
 USAGE
-  $ cli hello
+  $ npx @orbit-love/cli members:get source value
+  $ npx @orbit-love/cli members:find source value
 
 OPTIONS
-  -n, --name=name  name to print
+  -o, --open  opens member profile in browser
+  -a, --activities  lists member's latest activities
+  -n, --notes  lists member's latest notes
 
 DESCRIPTION
-  ...
-  Extra documentation goes here
+Source can be any of: github, twitter, email, id
+Value is a username, email, or Orbit ID
 ```
 
-_See code: [src/commands/hello.js](https://github.com/phazonoverload/cli/blob/v0.1.0/src/commands/hello.js)_
+## Supported Endpoints
 
-## `cli help [COMMAND]`
+The following is a list of Orbit API Endpoints and whether the CLI provides support for them:
 
-display help for cli
+| API   | Functionality |  Supported?
+|:----------|:---------|:-------------|
+| Activity Types | - |❌|
+| Users | - |❌|
+| Activities | - |❌|
+| Members | <ul><li>Get a member by ID</li><li>Find member by identity</li></ul> |🟧|
+| Notes | - |❌|
+| Reports | - |❌|
+| Reports | - |❌|
+| Workspaces | - |❌|
 
-```
-USAGE
-  $ cli help [COMMAND]
+## License
 
-ARGUMENTS
-  COMMAND  command to show help for
+This project is under the [MIT License](./LICENSE).
 
-OPTIONS
-  --all  see all commands in CLI
-```
+## Code of Conduct
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.2/src/commands/help.ts)_
-<!-- commandsstop -->
+This project uses the [Contributor Code of Conduct](.github/CODE_OF_CONDUCT.md). We ask everyone to please adhere by its guidelines.

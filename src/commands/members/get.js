@@ -60,12 +60,10 @@ class GetMember extends Command {
   }
 }
 
+GetMember.aliases = ['members:find']
+
 GetMember.args = [
-  {
-    name: 'source',
-    required: true,
-    options: ['github', 'twitter', 'email', 'id'],
-  },
+  {name: 'source', required: true, options: ['github', 'twitter', 'email', 'id']},
   {name: 'value', required: true},
 ]
 
