@@ -4,7 +4,9 @@ const axios = require('axios')
 const {cli} = require('cli-ux')
 const chalk = require('chalk')
 const {credentials, API_BASE_URL} = require('../../utils/utils')
-const {memberProfileBox, getMemberNotes, getMemberActivities, noteBox, activityBox} = require('../../utils/members')
+const {displayMember} = require('../../utils/members')
+const {getActivitiesByMember, displayActivity} = require('../../utils/activities')
+const {getNotesByMember, displayNote} = require('../../utils/notes')
 
 const {ORBIT_API_KEY, ORBIT_WORKSPACE_ID} = credentials()
 
@@ -28,24 +30,24 @@ class GetMember extends Command {
       url,
       headers: {Authorization: `Bearer ${ORBIT_API_KEY}`},
     }).then(async resp => {
-      const notes = await getMemberNotes({ORBIT_API_KEY, ORBIT_WORKSPACE_ID, API_BASE_URL}, resp.data.data.id)
+      const notes = await getNotesByMember({ORBIT_API_KEY, ORBIT_WORKSPACE_ID, API_BASE_URL}, resp.data.data.id)
       if (flags.open) {
         await cli.open(resp.data.data.attributes.orbit_url)
         return
       }
       if (flags.notes) {
         for (let note of notes) {
-          this.log(noteBox(note))
+          this.log(displayNote(note))
         }
       }
       if (flags.activities) {
-        const activities = await getMemberActivities({ORBIT_API_KEY, ORBIT_WORKSPACE_ID, API_BASE_URL}, resp.data.data.id)
+        const activities = await getActivitiesByMember({ORBIT_API_KEY, ORBIT_WORKSPACE_ID, API_BASE_URL}, resp.data.data.id)
         for (let activity of activities) {
-          this.log(activityBox(activity))
+          this.log(displayActivity(activity))
         }
       }
       if (Object.keys(flags).length === 0) {
-        this.log(memberProfileBox({
+        this.log(displayMember({
           notes,
           member: resp.data.data,
         }))
@@ -73,6 +75,6 @@ GetMember.flags = {
   activities: flags.boolean({char: 'a'}),
 }
 
-GetMember.description = 'Get a single member from your workspace.'
+GetMember.description = 'Get a member.'
 
 module.exports = GetMember

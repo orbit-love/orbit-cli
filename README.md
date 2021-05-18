@@ -12,13 +12,13 @@ We welcome contributions! There's lots to do! Check out the [Contributing Guidel
 $ npx @orbit-love/cli COMMAND ARGUMENTS FLAGS
 ```
 
-## setup
+## Setup
 
 ### `setup`
 
 Saves your Orbit Workspace ID and Orbit API Key. You must run this before other commands.
 
-## members
+## Members
 
 ### `members:get OR members:find`
 
@@ -39,6 +39,40 @@ Source can be any of: github, twitter, email, id
 Value is a username, email, or Orbit ID
 ```
 
+## Notes
+
+### `notes:get`
+
+Lists notes from a single member in your workspace.
+
+```
+USAGE
+  $ npx @orbit-love/cli notes:get id
+
+DESCRIPTION
+id is an Orbit ID - you can get it from the URL path
+```
+
+## Activities
+
+### `activities:get`
+
+Lists activities, currently from a single member in your workspace only.
+
+```
+USAGE
+  $ npx @orbit-love/cli activities:get
+
+OPTIONS
+  -m, --member  the member to get activities for
+
+DESCRIPTION
+id is an Orbit ID - you can get it from the URL path
+
+EXAMPLE
+npx @orbit-love/cli activities:get --member id-goes-here
+```
+
 ## Supported Endpoints
 
 The following is a list of Orbit API Endpoints and whether the CLI provides support for them:
@@ -47,9 +81,9 @@ The following is a list of Orbit API Endpoints and whether the CLI provides supp
 |:----------|:---------|:-------------|
 | Activity Types | - |❌|
 | Users | - |❌|
-| Activities | - |❌|
+| Activities | <ul><li>Get a member's activities</li></ul> |🟧|
 | Members | <ul><li>Get a member by ID</li><li>Find member by identity</li></ul> |🟧|
-| Notes | - |❌|
+| Notes | <ul><li>Get a member's notes</li></ul> |🟧|
 | Reports | - |❌|
 | Reports | - |❌|
 | Workspaces | - |❌|

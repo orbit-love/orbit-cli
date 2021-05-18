@@ -46,11 +46,6 @@
   "oclif": {
     "commands": "./src/commands",
     "bin": "npx @orbit-love/cli",
-    "topics": {
-      "members": {
-        "description": "Get and create members"
-      }
-    },
     "plugins": [
       "@oclif/plugin-help"
     ]
